@@ -1,3 +1,4 @@
+/* same css as http://www.bootply.com/128062 */
 .glyphicon-refresh-animate {
   -animation: spin .7s infinite linear;
   -webkit-animation: spin2 .7s infinite linear;
@@ -13,8 +14,3 @@
   to { transform: scale(1) rotate(360deg);}
 }
 
-.test {
-  background-color: #F00;
-  animation: bg-color 10s infinite;
-  -webkit-animation: bg-color 10s infinite;
-}
