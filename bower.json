@@ -1,0 +1,29 @@
+{
+  "name": "animated-button",
+  "authors": [
+    "jojonki <jonki@jonki.net>"
+  ],
+  "description": "Animated button samples",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "html",
+    "css",
+    "html5",
+    "bootstrap",
+    "animation"
+  ],
+  "license": "MIT",
+  "homepage": "twitter.com/jojonki",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "jquery-color-animation": "~1.6.0"
+  }
+}

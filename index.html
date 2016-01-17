@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="./button-animation.css">
+  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="./bower_components/jquery-color-animation/jquery.animate-colors-min.js"></script>
+  <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="./button-animation.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h3>Animated button</h3>
+    <h1>
+      <button class="" onclick="clickButton(this)"> Save</button>
+    </h1>
+  </div>
+  <script>
+    var colors = {
+      default : '#fff',
+      loading : '#5bc0de',
+      error   : '#d9534f',
+      done    : '#f0ad4e'
+    };
+
+    function clickButton(elm) {
+      var $elm = $(elm);
+      var org_text = $(elm).text();
+      $elm.animate({backgroundColor: colors.loading}, 400);
+      $elm.prop('disabled', true);
+
+      $elm.contents()[0].nodeValue = ' Saving...';
+      var $loading = $('<span>', {class: 'glyphicon glyphicon-refresh glyphicon-refresh-animate'});
+      $elm.prepend($loading);
+
+
+      setTimeout(function() {
+        $.ajax('/')
+          .always(function(err) {
+            $loading.fadeOut('fast', function() { 
+              $(this).remove();
+              if(err) {
+                $elm.contents()[0].nodeValue = ' Failed';
+                $elm.animate({backgroundColor: colors.error}, '200');
+              } else {
+                $elm.contents()[0].nodeValue = ' Success';
+                $elm.animate({backgroundColor: colors.done}, '200');
+              }
+              setTimeout(function() {
+                $elm.prop('disabled', false);
+                $elm.contents()[0].nodeValue = org_text;
+                $elm.animate({backgroundColor: colors.default});
+              }, 800); // showing process result time
+            });
+          }
+        );
+      }, 1000); // dummy loading delay
+    }
+    
+  </script>
+</body>
+</html>
